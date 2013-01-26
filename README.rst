@@ -4,7 +4,7 @@ autognosis
 Description
 -----------
 
-autognosis is a tool which processes when EC2 Spot Instance is terminated compulsorily.
+**autognosis** is a tool which processes when EC2 Spot Instance is terminated compulsorily.
 
 Installation
 ------------
