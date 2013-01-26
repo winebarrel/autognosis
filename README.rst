@@ -3,7 +3,6 @@ autognosis
 
 Description
 -----------
-
 **autognosis** is a tool which processes when EC2 Spot Instance is terminated compulsorily.
 
 Installation
@@ -46,7 +45,6 @@ Usage
 
 Dependence Tools
 ================
-
 * cronexec
   - http://www.netfort.gr.jp/~tosihisa/cronexec/
   - Amazon Linux RPM: https://bitbucket.org/winebarrel/cronexec.spec/downloadsa
