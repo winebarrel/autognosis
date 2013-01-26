@@ -11,7 +11,7 @@ Source0:	autognosis.tar.gz
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildArch:	noarch
 
-Requires:  ruby, cronexec, jq, describe-spot-price-history
+Requires:  ruby, cronexec, jq, describe-spot-price-history, wget
 
 %description
 autognosis is a tool which processes when a spot instance is terminated compulsorily.
