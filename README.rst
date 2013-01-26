@@ -48,11 +48,11 @@ Dependence Tools
 ================
 
 * cronexec
-  - http://www.netfort.gr.jp/~tosihisa/cronexec/
-  - Amazon Linux RPM: https://bitbucket.org/winebarrel/cronexec.spec/downloadsa
+  * http://www.netfort.gr.jp/~tosihisa/cronexec/
+  * Amazon Linux RPM: https://bitbucket.org/winebarrel/cronexec.spec/downloadsa
 * jq
-  - http://stedolan.github.com/jq
-  - Amazon Linux RPM: https://bitbucket.org/winebarrel/jq.spec/downloads
+  * http://stedolan.github.com/jq
+  * Amazon Linux RPM: https://bitbucket.org/winebarrel/jq.spec/downloads
 * describe-spot-price-history
-  - https://bitbucket.org/winebarrel/describe-spot-price-history
-  - Amazon Linux RPM: https://bitbucket.org/winebarrel/describe-spot-price-history/downloads
+  * https://bitbucket.org/winebarrel/describe-spot-price-history
+  * Amazon Linux RPM: https://bitbucket.org/winebarrel/describe-spot-price-history/downloads
