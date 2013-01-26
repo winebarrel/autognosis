@@ -1,12 +1,10 @@
 autognosis
 ==========
 
-
 Description
 -----------
 
 autognosis is a tool which processes when a spot instance is terminated compulsorily.
-
 
 Installation
 ------------
@@ -18,7 +16,6 @@ Installation
   shell> sudo rpm -ihv cronexec.rpm jq.rpm describe-spot-price-history.rpm
   shell> sudo rpm autognosis
   shell> #sudo chkconfig autognosis on
-
 
 Usage
 -----
@@ -47,7 +44,6 @@ Usage
 
 *It seems that there is a margin for about 1 minute after a price goes up before terminating...probably...*
 
-
 Dependence Tools
 ================
 
@@ -60,4 +56,3 @@ Dependence Tools
 * describe-spot-price-history
   - https://bitbucket.org/winebarrel/describe-spot-price-history
   - Amazon Linux RPM: https://bitbucket.org/winebarrel/describe-spot-price-history/downloads
-
