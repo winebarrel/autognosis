@@ -3,7 +3,7 @@ set -e
 
 CNF_FILE=$1
 
-if [ ! -e $CNF_FILE ]; then
+if [ ! -e "$CNF_FILE" ]; then
   echo 'Cannot find config file'
   exit 1
 fi
