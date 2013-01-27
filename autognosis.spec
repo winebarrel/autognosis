@@ -1,5 +1,5 @@
 Name:		autognosis
-Version:	0.1.2
+Version:	0.1.3
 Release:	1%{?dist}
 Summary:	autognosis is a tool which processes when a spot instance is terminated compulsorily.
 
@@ -44,7 +44,7 @@ if [ ! -e /etc/sysconfig/autognosis ]; then
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 
-# following json are expected: {"maxPrice":0.3}
+# expected json: {"maxPrice":0.3}
 #MAX_PRICE=`curl -s 169.254.169.254/latest/user-data | jq '.maxPrice'`
 
 #CHECK_INTERVAL=5
