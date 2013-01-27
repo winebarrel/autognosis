@@ -1,12 +1,12 @@
 Name:		autognosis
-Version:	0.1.1
+Version:	0.1.2
 Release:	1%{?dist}
 Summary:	autognosis is a tool which processes when a spot instance is terminated compulsorily.
 
 Group:		Development/Tools
 License:	BSD
 URL:		https://bitbucket.org/winebarrel/autognosis
-# wget https://bitbucket.org/winebarrel/autognosis/get/7a2fe5b49307.tar.gz -O $RPM_SOURCE_DIR/autognosis.tar.gz
+# wget https://bitbucket.org/winebarrel/autognosis/get/5a4f5a687c3c.tar.gz -O $RPM_SOURCE_DIR/autognosis.tar.gz
 Source0:	autognosis.tar.gz
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildArch:	noarch
@@ -17,20 +17,23 @@ Requires:  ruby, cronexec, jq, describe-spot-price-history, wget
 autognosis is a tool which processes when a spot instance is terminated compulsorily.
 
 %prep
-%setup -q -n winebarrel-autognosis-7a2fe5b49307
+%setup -q -n winebarrel-autognosis-5a4f5a687c3c
 
 %install
 rm -rf %{buildroot}
 install -d -m 0755 %{buildroot}%{_sbindir}
-install -d -m 0755 %{buildroot}%{_initddir}
+install -d -m 0755 %{buildroot}/etc/init
 install -m 0755 usr/sbin/autognosis %{buildroot}%{_sbindir}
-install -m 0755 etc/init.d/autognosis %{buildroot}%{_initddir}
+install -m 0755 etc/init/autognosis.conf %{buildroot}/etc/init
+#install -d -m 0755 %{buildroot}%{_initddir}
+#install -m 0755 etc/init.d/autognosis %{buildroot}%{_initddir}
 
 %clean
 rm -rf %{buildroot}
 
 %post
-chkconfig --add autognosis
+/sbin/initctl reload-configuration
+#chkconfig --add autognosis
 
 if [ ! -e /etc/sysconfig/autognosis ]; then
   touch /etc/sysconfig/autognosis
@@ -50,7 +53,12 @@ ON_TERMINATE='echo processing when terminating'
 EOF
 fi
 
+%postun
+/sbin/initctl reload-configuration
+#chkconfig --del autognosis
+
 %files
 %defattr(-,root,root,-)
 %{_sbindir}/autognosis
-%{_initddir}/autognosis
+/etc/init/autognosis.conf
+#%{_initddir}/autognosis

@@ -15,7 +15,6 @@ Installation
   ...
   shell> sudo rpm -ihv cronexec.rpm jq.rpm describe-spot-price-history.rpm
   shell> sudo rpm autognosis
-  shell> #sudo chkconfig autognosis on
 
 Usage
 -----
@@ -33,7 +32,7 @@ Usage
   #CHECK_INTERVAL=5
   
   ON_TERMINATE='echo processing when terminating'
-  shell> sudo /etc/init.d/autognosis start
+  shell> sudo initctl start autognosis
   ...
   # If the current price exceeds the max price...
   # shell> sudo tail /var/log/messages
