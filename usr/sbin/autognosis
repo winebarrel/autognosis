@@ -83,4 +83,8 @@ fi
 
 if test_formula "$CURRENT_PRICE > $MAX_PRICE"; then
   bash -c "$ON_TERMINATE"
+
+  if [ "$EXECUTE_ONCE" != "0" ]; then
+    touch $EXEC_FLAG_FILE
+  fi
 fi
