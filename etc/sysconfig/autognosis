@@ -8,3 +8,6 @@ AWS_SECRET_ACCESS_KEY=
 #CHECK_INTERVAL=5
 
 ON_TERMINATE='echo processing when terminating'
+
+#EXECUTE_ONCE=1
+#EXEC_FLAG_FILE=/var/tmp/autognosis.executed

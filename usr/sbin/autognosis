@@ -34,6 +34,17 @@ if [ -z "$CHECK_INTERVAL" ]; then
   CHECK_INTERVAL=5
 fi
 
+if [ -z "$EXECUTE_ONCE" ]; then
+  EXECUTE_ONCE=1
+fi
+
+if [ -z "$EXEC_FLAG_FILE" ]; then
+  EXEC_FLAG_FILE=/var/tmp/autognosis.executed
+fi
+
+if [ "$EXECUTE_ONCE" != "0" -a -e "$EXEC_FLAG_FILE" ]; then
+  exit 0
+fi
 
 function ec2_metadata {
   wget -q -O- http://169.254.169.254/latest/$1
