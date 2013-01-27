@@ -1,5 +1,5 @@
 Name:		autognosis
-Version:	0.1.3
+Version:	0.1.4
 Release:	1%{?dist}
 Summary:	autognosis is a tool which processes when a spot instance is terminated compulsorily.
 
@@ -50,6 +50,9 @@ AWS_SECRET_ACCESS_KEY=
 #CHECK_INTERVAL=5
 
 ON_TERMINATE='echo processing when terminating'
+
+#EXECUTE_ONCE=1
+#EXEC_FLAG_FILE=/var/tmp/autognosis.executed
 EOF
 fi
 
