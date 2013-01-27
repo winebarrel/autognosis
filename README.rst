@@ -32,14 +32,14 @@ Usage
   #CHECK_INTERVAL=5
   
   ON_TERMINATE='echo processing when terminating'
+  
+  #EXECUTE_ONCE=1
+  #EXEC_FLAG_FILE=/var/tmp/autognosis.executed
   shell> sudo initctl start autognosis
   ...
   # If the current price exceeds the max price...
   # shell> sudo tail /var/log/messages
   # Jan 26 14:55:15 ip-10-148-74-46 autognosis: processing when terminating
-  # Jan 26 14:55:20 ip-10-148-74-46 autognosis: processing when terminating
-  # Jan 26 14:55:25 ip-10-148-74-46 autognosis: processing when terminating
-  # ...
 
 *It seems that there is a margin for about 1 minute after a price goes up before terminating...probably...*
 
