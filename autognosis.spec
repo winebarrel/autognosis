@@ -1,12 +1,12 @@
 Name:		autognosis
-Version:	0.1.4
+Version:	0.1.5
 Release:	1%{?dist}
 Summary:	autognosis is a tool which processes when a spot instance is terminated compulsorily.
 
 Group:		Development/Tools
 License:	BSD
 URL:		https://bitbucket.org/winebarrel/autognosis
-# wget https://bitbucket.org/winebarrel/autognosis/get/4ca85964a220.tar.gz -O $RPM_SOURCE_DIR/autognosis.tar.gz
+# wget https://bitbucket.org/winebarrel/autognosis/get/54037ff53730.tar.gz -O $RPM_SOURCE_DIR/autognosis.tar.gz
 Source0:	autognosis.tar.gz
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildArch:	noarch
@@ -17,7 +17,7 @@ Requires:  ruby, cronexec, jq, describe-spot-price-history, wget
 autognosis is a tool which processes when a spot instance is terminated compulsorily.
 
 %prep
-%setup -q -n winebarrel-autognosis-4ca85964a220
+%setup -q -n winebarrel-autognosis-54037ff53730
 
 %install
 rm -rf %{buildroot}
@@ -53,6 +53,7 @@ ON_TERMINATE='echo processing when terminating'
 
 #EXECUTE_ONCE=1
 #EXEC_FLAG_FILE=/var/tmp/autognosis.executed
+#CURRENT_PRICE_SCRIPT='describe-spot-price-history -k "$AWS_ACCESS_KEY_ID" -s "$AWS_SECRET_ACCESS_KEY" -r "$REGION" -t "$INSTANCE_TYPE" -d Linux/UNIX -z "$AVAILABILITY_ZONE" --start-time "$PENDING_TIME" --sort time --attrs price --tail 1 --tsv'
 EOF
 fi
 

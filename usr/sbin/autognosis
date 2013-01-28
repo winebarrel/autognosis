@@ -47,13 +47,9 @@ if [ "$EXECUTE_ONCE" != "0" -a -e "$EXEC_FLAG_FILE" ]; then
 fi
 
 if [ -z "$CURRENT_PRICE_SCRIPT" ]; then
-  CURRENT_PRICE_SCRIPT='describe-spot-price-history 
-    -k "$AWS_ACCESS_KEY_ID" -s "$AWS_SECRET_ACCESS_KEY" -r "$REGION" 
-    -t "$INSTANCE_TYPE" -d Linux/UNIX -z "$AVAILABILITY_ZONE" 
-    --start-time "$PENDING_TIME" --sort time --attrs price 
-    --tail 1 --tsv'
+  CURRENT_PRICE_SCRIPT='describe-spot-price-history -k "$AWS_ACCESS_KEY_ID" -s "$AWS_SECRET_ACCESS_KEY" -r "$REGION" -t "$INSTANCE_TYPE" -d Linux/UNIX -z "$AVAILABILITY_ZONE" --start-time "$PENDING_TIME" --sort time --attrs price --tail 1 --tsv'
 fi
-`
+
 function ec2_metadata {
   wget -q -O- http://169.254.169.254/latest/$1
 }

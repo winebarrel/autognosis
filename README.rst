@@ -35,6 +35,7 @@ Usage
   
   #EXECUTE_ONCE=1
   #EXEC_FLAG_FILE=/var/tmp/autognosis.executed
+  #CURRENT_PRICE_SCRIPT='describe-spot-price-history -k "$AWS_ACCESS_KEY_ID" -s "$AWS_SECRET_ACCESS_KEY" -r "$REGION" -t "$INSTANCE_TYPE" -d Linux/UNIX -z "$AVAILABILITY_ZONE" --start-time "$PENDING_TIME" --sort time --attrs price --tail 1 --tsv'
   shell> sudo initctl start autognosis
   ...
   # If the current price exceeds the max price...
