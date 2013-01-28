@@ -46,6 +46,14 @@ if [ "$EXECUTE_ONCE" != "0" -a -e "$EXEC_FLAG_FILE" ]; then
   exit 0
 fi
 
+if [ -z "$CURRENT_PRICE_SCRIPT" ]; then
+  CURRENT_PRICE_SCRIPT='describe-spot-price-history 
+    -k "$AWS_ACCESS_KEY_ID" -s "$AWS_SECRET_ACCESS_KEY" -r "$REGION" 
+    -t "$INSTANCE_TYPE" -d Linux/UNIX -z "$AVAILABILITY_ZONE" 
+    --start-time "$PENDING_TIME" --sort time --attrs price 
+    --tail 1 --tsv'
+fi
+`
 function ec2_metadata {
   wget -q -O- http://169.254.169.254/latest/$1
 }
@@ -70,11 +78,14 @@ INSTANCE_IDENTITY=`ec2_metadata dynamic/instance-identity/document`
 AVAILABILITY_ZONE=`fetch_map "$INSTANCE_IDENTITY" availabilityZone`
            REGION=`fetch_map "$INSTANCE_IDENTITY" region`
 
-CURRENT_PRICE=`describe-spot-price-history \
-  -k "$AWS_ACCESS_KEY_ID" -s "$AWS_SECRET_ACCESS_KEY" -r $REGION \
-  -t $INSTANCE_TYPE -d Linux/UNIX -z $AVAILABILITY_ZONE \
-  --start-time $PENDING_TIME --sort time --attrs price \
-  --tail 1 --tsv`
+CURRENT_PRICE=`
+  AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" \
+  AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" \
+  REGION="$REGION" \
+  INSTANCE_TYPE="$INSTANCE_TYPE" \
+  AVAILABILITY_ZONE="$AVAILABILITY_ZONE" \
+  PENDING_TIME="$PENDING_TIME" \
+  bash -c "$CURRENT_PRICE_SCRIPT"`
 
 if [ -z $CURRENT_PRICE ]; then
   echo 'Cannot get curent price'
