@@ -1,6 +1,6 @@
 Name:		autognosis
 Version:	0.1.6
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	autognosis is a tool which processes when a spot instance is terminated compulsorily.
 
 Group:		Development/Tools
@@ -11,8 +11,8 @@ Source0:	autognosis.tar.gz
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildArch:	noarch
 
-#Requires:  ruby, cronexec, jq, describe-spot-price-history, wget, bc
-Requires:  ruby, cronexec, jq, wget, bc
+#Requires:	cronexec, jq, describe-spot-price-history, wget, bc
+Requires:	cronexec, jq, wget, bc
 
 %description
 autognosis is a tool which processes when a spot instance is terminated compulsorily.
