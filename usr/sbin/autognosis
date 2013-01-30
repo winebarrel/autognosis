@@ -93,6 +93,9 @@ CURRENT_PRICE=`
 if [ -z "$CURRENT_PRICE" ]; then
   echo 'Cannot get curent price'
   exit 1
+elif [[ ! "$CURRENT_PRICE" =~ ^[.0-9]+$ ]]; then
+  echo "Illegal price: $CURRENT_PRICE"
+  exit 1
 fi
 
 test_formula "$CURRENT_PRICE > $MAX_PRICE"
