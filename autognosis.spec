@@ -1,5 +1,5 @@
 Name:		autognosis
-Version:	0.1.8
+Version:	0.1.9
 Release:	1
 Summary:	autognosis is a tool which processes when a spot instance is terminated compulsorily.
 
