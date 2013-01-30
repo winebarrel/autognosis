@@ -1,6 +1,6 @@
 Name:		autognosis
-Version:	0.1.6
-Release:	2%{?dist}
+Version:	0.1.7
+Release:	1
 Summary:	autognosis is a tool which processes when a spot instance is terminated compulsorily.
 
 Group:		Development/Tools
@@ -54,7 +54,7 @@ ON_TERMINATE='echo processing when terminating'
 
 #EXECUTE_ONCE=1
 #EXEC_FLAG_FILE=/var/tmp/autognosis.executed
-#CURRENT_PRICE_SCRIPT='describe-spot-price-history -k "$AWS_ACCESS_KEY_ID" -s "$AWS_SECRET_ACCESS_KEY" -r "$REGION" -t "$INSTANCE_TYPE" -d Linux/UNIX -z "$AVAILABILITY_ZONE" --start-time "$PENDING_TIME" --sort time --attrs price --tail 1 --tsv'
+#CURRENT_PRICE_SCRIPT='describe-spot-price-history -k "$AWS_ACCESS_KEY_ID" -s "$AWS_SECRET_ACCESS_KEY" -r "$REGION" -t "$INSTANCE_TYPE" -d Linux/UNIX -z "$AVAILABILITY_ZONE" --start-time `date -u -d "3 hours ago" +%Y-%m-%dT%H:%M:%SZ` --sort time --attrs price --tail 1 --tsv'
 EOF
 fi
 
