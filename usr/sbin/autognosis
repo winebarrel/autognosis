@@ -63,8 +63,17 @@ function fetch_map {
 }
 
 function test_formula {
-  test `echo "$1" | bc` -eq 1
-  return $?
+  RESULT=`echo "$1" | bc`
+
+  if [ $? -ne 0 ]; then
+    return 1
+  elif [ -z "$RESULT" ]; then
+    return 1
+  elif [ "$RESULT" == "1" ]; then
+    return 0
+  else
+    return 1
+  fi
 }
 
 INSTANCE_IDENTITY=`ec2_metadata dynamic/instance-identity/document`
@@ -81,12 +90,17 @@ CURRENT_PRICE=`
   AVAILABILITY_ZONE="$AVAILABILITY_ZONE" \
   bash -c "$CURRENT_PRICE_SCRIPT"`
 
-if [ -z $CURRENT_PRICE ]; then
+if [ -z "$CURRENT_PRICE" ]; then
   echo 'Cannot get curent price'
   exit 1
 fi
 
-if test_formula "$CURRENT_PRICE > $MAX_PRICE"; then
+test_formula "$CURRENT_PRICE > $MAX_PRICE"
+
+if [ $? -eq 0 ]; then
+  echo "Current Price exceeded Max Price: $CURRENT_PRICE > $MAX_PRICE"
+  echo "Termination processing is performed: $ON_TERMINATE"
+
   bash -c "$ON_TERMINATE"
 
   if [ "$EXECUTE_ONCE" != "0" ]; then
