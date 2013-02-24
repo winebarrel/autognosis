@@ -8,7 +8,7 @@ Description
 | 
 
 Server Installation
-------------
+-------------------
 ::
 
   shell> sudo rpm -ihv cronexec.rpm describe-spot-price-history.rpm
@@ -24,7 +24,7 @@ Server Installation
   shell> memdump -s 127.0.0.1 # check of starting of a server
 
 Client Installation
-------------
+-------------------
 ::
 
   local> # launch a spot instance with user-data
@@ -50,7 +50,7 @@ Client Installation
 | 
 
 Dependence Tools
-================
+----------------
 
 * cronexec
 
