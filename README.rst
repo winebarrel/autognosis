@@ -51,6 +51,11 @@ Client Installation
 Dependence Tools
 ----------------
 
+* memcached, libmemcached(Libmemcachedutil) 
+
+  - http://memcached.org
+  - http://libmemcached.org/libMemcached.html
+
 * cronexec
 
   - http://www.netfort.gr.jp/~tosihisa/cronexec/
