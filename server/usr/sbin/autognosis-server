@@ -26,9 +26,9 @@ AG_TMPDIR=`mktemp -d`
 describe_current_prices | awk -v tmpdir=$AG_TMPDIR -F'\t' '
 {
   gsub(/[ /()]/, "_")
-  print $3 > tmpdir"/"$1";"$2
+  printf "echo -n %s > \"%s\";", $3, tmpdir"/"$1";"$2
 }
-'
+' | sh
 
 find $AG_TMPDIR -type f -exec memcp -s "${MEMCACHED_SERVERS:-127.0.0.1}" "{}" \;
 
