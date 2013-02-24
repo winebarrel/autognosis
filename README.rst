@@ -13,12 +13,12 @@ Server Installation
   shell> sudo rpm -ihv cronexec.rpm describe-spot-price-history.rpm
   shell> sudo yum install memcached libmemcached
   shell> sudo rpm -ihv autognosis-server-X.X.X-X.rpm
-
+  
   shell> sudo vi /etc/sysconfig/autognosis-server
   # (define environments...)
   #AWS_ACCESS_KEY_ID=...
   #AWS_SECRET_ACCESS_KEY=...
-
+  
   shell> sudo initctl start autognosis-server
   shell> memdump -s 127.0.0.1 # check of starting of a server
 
@@ -32,12 +32,13 @@ Client Installation
   shell> sudo rpm -ihv cronexec.rpm
   shell> sudo yum install curl memcached libmemcached
   shell> sudo rpm -ihv autognosis-X.X.X-X.rpm
-
+  
   shell> sudo vi /etc/sysconfig/autognosis
   # (define environments...)
   #MAX_PRICE=...
   #ON_TERMINATE=...
-  #PRODUCT_DESCRIPTION="Linux/UNIX (Amazon VPC)"
+  #PRODUCT_DESCRIPTION=...
+  
   shell> sudo initctl start autognosis
   ...
   # If the current price exceeds the max price...
