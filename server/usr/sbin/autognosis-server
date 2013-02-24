@@ -2,13 +2,13 @@
 set -e
 
 function describe_current_prices() {
-  describe-spot-price-history   \
-    -k "$AWS_ACCESS_KEY_ID"     \
-    -s "$AWS_SECRET_ACCESS_KEY" \
-    -r "$REGION"                \
-    --start-time "$START_TIME"  \
-    --sort time                 \
-    --attrs desc,type,price     \
+  describe-spot-price-history    \
+    -k "$AWS_ACCESS_KEY_ID"      \
+    -s "$AWS_SECRET_ACCESS_KEY"  \
+    -r "$REGION"                 \
+    --start-time "$START_TIME"   \
+    --sort time                  \
+    --attrs desc,zone,type,price \
     --tsv
 }
 
@@ -26,7 +26,7 @@ AG_TMPDIR=`mktemp -d`
 describe_current_prices | awk -v tmpdir=$AG_TMPDIR -F'\t' '
 {
   gsub(/[ /()]/, "_")
-  printf "echo -n %s > \"%s\";", $3, tmpdir"/"$1";"$2
+  printf "echo -n %s > \"%s\";", $4, tmpdir"/"$1";"$2";"$3
 }
 ' | sh
 
