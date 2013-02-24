@@ -6,36 +6,38 @@ Description
 
 **autognosis** is a tool which processes when EC2 Spot Instance is terminated compulsorily.
 
-Installation
+Server Installation
+------------
+::
+
+  shell> sudo rpm -ihv cronexec.rpm describe-spot-price-history.rpm
+  shell> sudo yum install memcached libmemcached
+  shell> sudo rpm -ihv autognosis-server-X.X.X-X.rpm
+
+  shell> sudo vi /etc/sysconfig/autognosis-server
+  # (define environments...)
+  #AWS_ACCESS_KEY_ID=...
+  #AWS_SECRET_ACCESS_KEY=...
+
+  shell> sudo initctl start autognosis-server
+  shell> memdump -s 127.0.0.1 # check of starting of a server
+
+Client Installation
 ------------
 ::
 
   local> # launch a spot instance with user-data
   local> ec2-request-spot-instances -d '{"maxPrice":0.3}' -p 0.3 -t c1.xlarge ami-4e6cd34f -k ...
   ...
-  shell> sudo rpm -ihv cronexec.rpm jq.rpm describe-spot-price-history.rpm
-  shell> sudo rpm autognosis
-
-Usage
------
-::
+  shell> sudo rpm -ihv cronexec.rpm
+  shell> sudo yum install curl memcached libmemcached
+  shell> sudo rpm -ihv autognosis-X.X.X-X.rpm
 
   shell> sudo vi /etc/sysconfig/autognosis
-  shell> sudo cat /etc/sysconfig/autognosis
-  # AWS Credential
-  AWS_ACCESS_KEY_ID=...
-  AWS_SECRET_ACCESS_KEY=...
-  
-  # expected json: {"maxPrice":0.3}
-  MAX_PRICE=`curl -s 169.254.169.254/latest/user-data | jq '.maxPrice'`
-  
-  #CHECK_INTERVAL=5
-  
-  ON_TERMINATE='echo processing when terminating'
-  
-  #EXECUTE_ONCE=1
-  #EXEC_FLAG_FILE=/var/tmp/autognosis.executed
-  #CURRENT_PRICE_SCRIPT='describe-spot-price-history -k "$AWS_ACCESS_KEY_ID" -s "$AWS_SECRET_ACCESS_KEY" -r "$REGION" -t "$INSTANCE_TYPE" -d Linux/UNIX -z "$AVAILABILITY_ZONE" --start-time "$PENDING_TIME" --sort time --attrs price --tail 1 --tsv'
+  # (define environments...)
+  #MAX_PRICE=...
+  #ON_TERMINATE=...
+  #PRODUCT_DESCRIPTION="Linux/UNIX (Amazon VPC)"
   shell> sudo initctl start autognosis
   ...
   # If the current price exceeds the max price...
