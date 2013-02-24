@@ -4,7 +4,7 @@ autognosis
 Description
 -----------
 
-**autognosis** is a tool which processes when EC2 Spot Instance is terminated compulsorily.
+| **autognosis** is a tool which processes when EC2 Spot Instance is terminated compulsorily.
 
 
 Server Installation
@@ -47,7 +47,7 @@ Client Installation
   # shell> sudo tail /var/log/messages
   # Jan 26 14:55:15 ip-10-148-74-46 autognosis: processing when terminating
 
-*It seems that there is a margin for about 1 minute after a price goes up before terminating...probably...*
+| *It seems that there is a margin for about 1 minute after a price goes up before terminating...probably...*
 
 
 Dependence Tools
