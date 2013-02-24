@@ -29,8 +29,8 @@ Client Installation
   local> # launch a spot instance with user-data
   local> ec2-request-spot-instances -d '{"maxPrice":0.3}' -p 0.3 -t c1.xlarge ami-4e6cd34f -k ...
   ...
-  shell> sudo rpm -ihv cronexec.rpm
-  shell> sudo yum install curl memcached libmemcached
+  shell> sudo rpm -ihv cronexec.rpm jq.rpm
+  shell> sudo yum install curl libmemcached
   shell> sudo rpm -ihv autognosis-X.X.X-X.rpm
   
   shell> sudo vi /etc/sysconfig/autognosis
