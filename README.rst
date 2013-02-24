@@ -51,6 +51,10 @@ Client Installation
 Dependence Tools
 ----------------
 
+* Upstart
+
+  - https://launchpad.net/upstart
+
 * memcached, libmemcached(Libmemcachedutil) 
 
   - http://memcached.org
