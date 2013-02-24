@@ -1,0 +1,35 @@
+#!/bin/bash
+set -e
+
+function describe_current_prices() {
+  describe-spot-price-history   \
+    -k "$AWS_ACCESS_KEY_ID"     \
+    -s "$AWS_SECRET_ACCESS_KEY" \
+    -r "$REGION"                \
+    --start-time "$START_TIME"  \
+    --sort time                 \
+    --attrs desc,type,price     \
+    --tsv
+}
+
+CNF_FILE=$1
+
+if [ ! -e "$CNF_FILE" ]; then
+  echo 'Cannot find config file'
+  exit 1
+fi
+
+. $CNF_FILE
+
+AG_TMPDIR=`mktemp -d`
+
+describe_current_prices | awk -v tmpdir=$AG_TMPDIR -F'\t' '
+{
+  gsub(/[ /()]/, "_")
+  print $3 > tmpdir"/"$1";"$2
+}
+'
+
+find $AG_TMPDIR -type f -exec memcp -s "${MEMCACHED_SERVERS:-127.0.0.1}" "{}" \;
+
+rm -rf $AG_TMPDIR
