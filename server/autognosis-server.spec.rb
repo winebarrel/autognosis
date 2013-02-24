@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'erb'
 
-mercurial_hash = '09343bcd8984'
+mercurial_hash = '0d656da93146'
 spec_path = File.join(File.expand_path(File.dirname(__FILE__)), 'autognosis-server.spec')
 conf_path = File.join(File.expand_path(File.dirname(__FILE__)), 'etc/sysconfig/autognosis-server')
 
