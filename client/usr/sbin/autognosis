@@ -1,6 +1,4 @@
 #!/bin/bash
-set -e
-
 function test_formula() {
   RESULT=`echo "$1" | bc`
 
