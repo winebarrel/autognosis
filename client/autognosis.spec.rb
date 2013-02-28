@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'erb'
 
-mercurial_hash = '21957088a6de'
+mercurial_hash = 'bc0b8c24ad67'
 spec_path = File.join(File.expand_path(File.dirname(__FILE__)), 'autognosis.spec')
 conf_path = File.join(File.expand_path(File.dirname(__FILE__)), 'etc/sysconfig/autognosis')
 
@@ -12,7 +12,7 @@ end
 __END__
 Name:		autognosis
 Version:	0.3.0
-Release:	1
+Release:	2
 Summary:	autognosis is a tool which processes when a spot instance is terminated compulsorily.
 
 Group:		Development/Tools
