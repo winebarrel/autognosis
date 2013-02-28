@@ -1,13 +1,13 @@
 Name:		autognosis
 Version:	0.3.0
-Release:	2
+Release:	3
 Summary:	autognosis is a tool which processes when a spot instance is terminated compulsorily.
 
 Group:		Development/Tools
 License:	BSD
 URL:		https://bitbucket.org/winebarrel/autognosis
-# wget https://bitbucket.org/winebarrel/autognosis/get/bc0b8c24ad67.tar.gz -O $RPM_SOURCE_DIR/
-Source0:	bc0b8c24ad67.tar.gz
+# wget https://bitbucket.org/winebarrel/autognosis/get/f38ca0bd5b22.tar.gz -O $RPM_SOURCE_DIR/
+Source0:	f38ca0bd5b22.tar.gz
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildArch:	noarch
 
@@ -18,7 +18,7 @@ Requires:	cronexec, jq, curl, bc, libmemcached
 autognosis is a tool which processes when a spot instance is terminated compulsorily.
 
 %prep
-%setup -q -n winebarrel-autognosis-bc0b8c24ad67
+%setup -q -n winebarrel-autognosis-f38ca0bd5b22
 
 %install
 rm -rf %{buildroot}
