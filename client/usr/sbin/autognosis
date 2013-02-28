@@ -77,9 +77,7 @@ elif [[ ! "$CURRENT_PRICE" =~ ^[.0-9]+$ ]]; then
   exit 1
 fi
 
-test_formula "$CURRENT_PRICE > $MAX_PRICE"
-
-if [ $? -eq 0 ]; then
+if test_formula "$CURRENT_PRICE > $MAX_PRICE"; then
   echo "Current Price exceeded Max Price: $CURRENT_PRICE > $MAX_PRICE"
   echo "Termination processing is performed: $ON_TERMINATE"
 
